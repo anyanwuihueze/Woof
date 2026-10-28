@@ -69,7 +69,7 @@ export const Navigation: React.FC<NavigationProps> = ({
               </div>
               <div>
                 <span className="font-serif text-2xl font-black tracking-tight text-[#194B38] whitespace-nowrap block leading-tight">
-                  PawMatch
+                  Woof Pal
                 </span>
                 <span className="text-[10px] tracking-wider text-[#536B60] font-medium uppercase block">
                   Lagos & Global

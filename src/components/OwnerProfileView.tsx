@@ -61,7 +61,7 @@ export const OwnerProfileView: React.FC<OwnerProfileViewProps> = ({
 
   const handleDeleteDog = (dogId: string, dogName: string) => {
     if (userDogs.length <= 1) {
-      alert("You need at least one dog profile on PawMatch.");
+      alert("You need at least one dog profile on Woof Pal.");
       return;
     }
     if (window.confirm(`Are you sure you want to remove ${dogName}'s profile?`)) {

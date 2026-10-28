@@ -351,7 +351,7 @@ export const storageService = {
         dogName: CURRENT_USER_DOGS[0].name,
         preferredDate: '2026-11-02',
         preferredTime: '10:00 AM',
-        notes: 'Annual routine health evaluation and certificate renewal for PawMatch verification.',
+        notes: 'Annual routine health evaluation and certificate renewal for Woof Pal verification.',
         status: 'accepted',
         createdAt: '2026-10-22T09:30:00Z',
       }

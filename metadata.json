@@ -1,5 +1,5 @@
 {
-  "name": "PawMatch",
+  "name": "Woof Pal",
   "description": "Mobile-first dog matching, social discovery, and pet services marketplace platform.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

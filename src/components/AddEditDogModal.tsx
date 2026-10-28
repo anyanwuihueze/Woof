@@ -48,7 +48,7 @@ export const AddEditDogModal: React.FC<AddEditDogModalProps> = ({
   const [bio, setBio] = useState(initialDog?.bio || '');
   const [area, setArea] = useState(initialDog?.location.area || 'Lekki Phase 1');
   const [photoUrl, setPhotoUrl] = useState(
-    initialDog?.photos[0] || '/src/assets/images/golden_retriever_profile_1792932440339.jpg'
+    initialDog?.photos[0] || '/images/golden_retriever_profile_1792932440339.jpg'
   );
 
   // Temperament tags
@@ -81,11 +81,11 @@ export const AddEditDogModal: React.FC<AddEditDogModalProps> = ({
   const [studOrDamTerms, setStudOrDamTerms] = useState(initialDog?.responsibleBreedingInfo?.studOrDamTerms || '');
 
   const photoPresets = [
-    { label: 'Golden Retriever', url: '/src/assets/images/golden_retriever_profile_1792932440339.jpg' },
-    { label: 'French Bulldog', url: '/src/assets/images/french_bulldog_profile_1792932441788.jpg' },
-    { label: 'German Shepherd', url: '/src/assets/images/german_shepherd_profile_1792932441892.jpg' },
-    { label: 'Cavapoo / Poodle', url: '/src/assets/images/poodle_maltese_profile_1792932441976.jpg' },
-    { label: 'Park Play Buddies', url: '/src/assets/images/pawmatch_hero_dog_1792932440583.jpg' }
+    { label: 'Golden Retriever', url: '/images/golden_retriever_profile_1792932440339.jpg' },
+    { label: 'French Bulldog', url: '/images/french_bulldog_profile_1792932441788.jpg' },
+    { label: 'German Shepherd', url: '/images/german_shepherd_profile_1792932441892.jpg' },
+    { label: 'Cavapoo / Poodle', url: '/images/poodle_maltese_profile_1792932441976.jpg' },
+    { label: 'Park Play Buddies', url: '/images/pawmatch_hero_dog_1792932440583.jpg' }
   ];
 
   const handleAddTemperament = () => {
@@ -387,7 +387,7 @@ export const AddEditDogModal: React.FC<AddEditDogModalProps> = ({
 
           {/* Primary Purpose */}
           <div className="space-y-3 pt-4 border-t border-[#F0ECE1]">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#1B4332]">4. Primary Purpose on PawMatch</h4>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#1B4332]">4. Primary Purpose on Woof Pal</h4>
             
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
@@ -485,7 +485,7 @@ export const AddEditDogModal: React.FC<AddEditDogModalProps> = ({
               </div>
 
               <div className="p-3 bg-[#FEF2F2] border border-[#FCA5A5] rounded-xl text-xs text-[#991B1B] leading-relaxed">
-                PawMatch does not provide medical clearances or certify breeding suitability through automated scoring. Both owners must consult qualified veterinarians and review physical documentation.
+                Woof Pal does not provide medical clearances or certify breeding suitability through automated scoring. Both owners must consult qualified veterinarians and review physical documentation.
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">

@@ -93,7 +93,7 @@ export const ReportBlockModal: React.FC<ReportBlockModalProps> = ({
             </h4>
             <p className="text-xs text-[#4B5563]">
               {mode === 'report'
-                ? 'Thank you for keeping PawMatch safe. Our trust & safety team will review this report within 24 hours.'
+                ? 'Thank you for keeping Woof Pal safe. Our trust & safety team will review this report within 24 hours.'
                 : `${ownerName} has been blocked and will no longer appear in your discovery feed or matches.`}
             </p>
           </div>

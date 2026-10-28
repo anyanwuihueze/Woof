@@ -305,7 +305,7 @@ export const DogDetailModal: React.FC<DogDetailModalProps> = ({
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-[#FEF2F2] border border-[#FCA5A5] text-xs text-[#991B1B] leading-relaxed">
-                  <strong>Ethical Breeding Policy:</strong> A profile match on PawMatch is <em>never</em> proof or certification that breeding is medically, genetically, or ethically appropriate. PawMatch does not provide automated breeding scores. Both owners must consult qualified veterinary surgeons and perform official OFA/DNA testing before any pairing.
+                  <strong>Ethical Breeding Policy:</strong> A profile match on Woof Pal is <em>never</em> proof or certification that breeding is medically, genetically, or ethically appropriate. Woof Pal does not provide automated breeding scores. Both owners must consult qualified veterinary surgeons and perform official OFA/DNA testing before any pairing.
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">

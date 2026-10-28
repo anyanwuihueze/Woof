@@ -38,7 +38,7 @@ export const MatchCelebrationModal: React.FC<MatchCelebrationModalProps> = ({
             <span>Mutual Canine Interest</span>
           </div>
           <h2 className="font-serif text-3xl font-black text-[#194B38] tracking-tight">
-            It's a PawMatch!
+            It's a Woof Pal!
           </h2>
           <p className="text-sm text-[#536B60]">
             Both you and <strong>{targetDog.ownerName}</strong> showed mutual interest!

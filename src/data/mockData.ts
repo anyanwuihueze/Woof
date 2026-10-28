@@ -36,8 +36,8 @@ export const CURRENT_USER_DOGS: Dog[] = [
     energyLevel: 'High',
     favoriteActivities: ['Fetch with tennis balls', 'Swimming at the beach', 'Tug of war', 'Sniffing trails'],
     photos: [
-      '/src/assets/images/golden_retriever_profile_1792932440339.jpg',
-      '/src/assets/images/pawmatch_hero_dog_1792932440583.jpg'
+      '/images/golden_retriever_profile_1792932440339.jpg',
+      '/images/pawmatch_hero_dog_1792932440583.jpg'
     ],
     bio: 'Golden sweetheart with endless tail wags! Loves retrieving balls from the surf and rolling on cool grass. Fully socialized and gentle with small and large dogs.',
     primaryPurpose: 'playdates',
@@ -80,7 +80,7 @@ export const MOCK_DOGS: Dog[] = [
     energyLevel: 'Moderate',
     favoriteActivities: ['Sunbathing on patio', 'Short shady walks', 'Treat puzzle toys'],
     photos: [
-      '/src/assets/images/french_bulldog_profile_1792932441788.jpg'
+      '/images/french_bulldog_profile_1792932441788.jpg'
     ],
     bio: 'Luna is a little clown with big bat ears. She gets playful bursts of zoomies followed by 3-hour naps. Enjoys calm dogs who respect gentle play.',
     primaryPurpose: 'playdates',
@@ -120,7 +120,7 @@ export const MOCK_DOGS: Dog[] = [
     energyLevel: 'Very High',
     favoriteActivities: ['Agility course running', 'Frisbee jumps', 'Long distance trail walking'],
     photos: [
-      '/src/assets/images/german_shepherd_profile_1792932441892.jpg'
+      '/images/german_shepherd_profile_1792932441892.jpg'
     ],
     bio: 'Disciplined and handsome German Shepherd with exemplary recall. Looking for athletic canine running buddies or ethical breed inquiries.',
     primaryPurpose: 'breeding',
@@ -172,7 +172,7 @@ export const MOCK_DOGS: Dog[] = [
     energyLevel: 'Moderate',
     favoriteActivities: ['Lap snuggles', 'Puppy socializing groups', 'Squeaky plushies'],
     photos: [
-      '/src/assets/images/poodle_maltese_profile_1792932441976.jpg'
+      '/images/poodle_maltese_profile_1792932441976.jpg'
     ],
     bio: 'Young fluffball learning the ropes! Loves greeting every dog gently with slow tail wags. Perfect playmate for small breeds and gentle puppies.',
     primaryPurpose: 'socialization',
@@ -630,7 +630,7 @@ export const MOCK_SERVICE_PROVIDERS: ServiceProvider[] = [
     website: 'https://lekkipetcare.com',
     operatingHours: 'Mon - Sat: 8:00 AM - 7:00 PM | Sun (Emergency): 10:00 AM - 4:00 PM',
     verifiedStatus: 'verified_partner',
-    description: 'Premier companion animal veterinary hospital in Lekki. Offering full wellness checkups, digital radiology, ultrasound, pre-breeding health evaluations, and official PawMatch verification reviews.',
+    description: 'Premier companion animal veterinary hospital in Lekki. Offering full wellness checkups, digital radiology, ultrasound, pre-breeding health evaluations, and official Woof Pal verification reviews.',
     pricingRange: '₦₦₦',
     services: [
       { id: 'srv_vet_01', name: 'Comprehensive Wellness Exam & Vaccine Review', price: '₦25,000', duration: '45 mins', description: 'Full physical examination, coat assessment, vitals, and vaccination status verification.' },
@@ -773,7 +773,7 @@ export const MOCK_SERVICE_PROVIDERS: ServiceProvider[] = [
     pricingRange: '₦₦₦',
     services: [
       { id: 'srv_oth_01', name: 'Golden Hour Park & Action Photoshoot', price: '₦50,000', duration: '90 mins', description: 'Outdoor action portraits, candid moments, and 15 retouched digital high-res images.' },
-      { id: 'srv_oth_02', name: 'PawMatch Profile Showcase Studio Session', price: '₦35,000', duration: '45 mins', description: 'Studio portraits optimized for your dog’s PawMatch profile and wall prints.' }
+      { id: 'srv_oth_02', name: 'Woof Pal Profile Showcase Studio Session', price: '₦35,000', duration: '45 mins', description: 'Studio portraits optimized for your dog’s Woof Pal profile and wall prints.' }
     ]
   }
 ];

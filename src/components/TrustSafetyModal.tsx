@@ -28,7 +28,7 @@ export const TrustSafetyModal: React.FC<TrustSafetyModalProps> = ({
             <ShieldCheck className="w-6 h-6 text-[#194B38]" />
             <div>
               <h3 className="font-serif text-lg font-bold text-[#194B38]">Trust & Safety Protocol</h3>
-              <p className="text-xs text-[#536B60]">PawMatch Community Guidelines & Welfare Standards</p>
+              <p className="text-xs text-[#536B60]">Woof Pal Community Guidelines & Welfare Standards</p>
             </div>
           </div>
 
@@ -51,7 +51,7 @@ export const TrustSafetyModal: React.FC<TrustSafetyModalProps> = ({
                 Safety & Medical Notice
               </h4>
               <p className="text-xs text-[#7F1D1D] leading-relaxed">
-                PawMatch does not and cannot guarantee animal temperament, behavior, or absolute safety. Dog owners are solely responsible for supervising their pets, confirming health documentation, and exercising prudent judgment during all in-person interactions.
+                Woof Pal does not and cannot guarantee animal temperament, behavior, or absolute safety. Dog owners are solely responsible for supervising their pets, confirming health documentation, and exercising prudent judgment during all in-person interactions.
               </p>
             </div>
           </div>
@@ -94,9 +94,9 @@ export const TrustSafetyModal: React.FC<TrustSafetyModalProps> = ({
             </h4>
 
             <div className="p-4 rounded-2xl bg-[#FAF7F0] border border-[#E8F0E9] space-y-2 text-xs text-[#536B60]">
-              <p>PawMatch strictly prohibits the following activities under penalty of permanent account termination and referral to law enforcement:</p>
+              <p>Woof Pal strictly prohibits the following activities under penalty of permanent account termination and referral to law enforcement:</p>
               <ul className="list-disc pl-5 space-y-1 text-[#24352D]">
-                <li>Using PawMatch to sell puppies, dogs, or exotic animals for commercial profit.</li>
+                <li>Using Woof Pal to sell puppies, dogs, or exotic animals for commercial profit.</li>
                 <li>Arranging dog fighting, baiting, or aggressive provocation.</li>
                 <li>Backyard or substandard puppy mill breeding without certified veterinary supervision.</li>
                 <li>Falsifying veterinary vaccination certificates or health screening test results.</li>
@@ -113,7 +113,7 @@ export const TrustSafetyModal: React.FC<TrustSafetyModalProps> = ({
             </h4>
 
             <p className="text-xs text-[#536B60] leading-relaxed">
-              If using PawMatch for pedigree connections, members must understand that mutual interest in the app does not certify genetic compatibility or reproductive fitness. Ethical breeders must conduct breed-specific DNA tests, OFA hip/elbow x-rays, and consult licensed veterinary surgeons.
+              If using Woof Pal for pedigree connections, members must understand that mutual interest in the app does not certify genetic compatibility or reproductive fitness. Ethical breeders must conduct breed-specific DNA tests, OFA hip/elbow x-rays, and consult licensed veterinary surgeons.
             </p>
           </div>
 

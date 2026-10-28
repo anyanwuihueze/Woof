@@ -76,7 +76,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
               className="w-full h-2 bg-[#E8F0E9] rounded-lg appearance-none cursor-pointer accent-[#194B38]"
             />
             <p className="text-[11px] text-[#536B60]">
-              PawMatch uses approximate neighbourhood distance to safeguard your exact home address.
+              Woof Pal uses approximate neighbourhood distance to safeguard your exact home address.
             </p>
           </div>
 

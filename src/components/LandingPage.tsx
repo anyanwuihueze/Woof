@@ -60,7 +60,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             {/* Pill Kicker */}
             <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#194B38] bg-[#E8F0E9] px-3.5 py-1.5 rounded-full border border-[#D1E0D3] shadow-2xs">
               <span className="w-2 h-2 rounded-full bg-[#194B38] animate-pulse"></span>
-              <span className="font-serif italic font-medium">PawMatch</span>
+              <span className="font-serif italic font-medium">Woof Pal</span>
               <span>·</span>
               <span className="tracking-wide">Dog Matching & Verified Pet Services in Lagos</span>
             </div>
@@ -123,13 +123,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <div className="hidden sm:flex absolute -top-5 -left-6 z-20 bg-white/95 backdrop-blur-md rounded-2xl border border-[#E8F0E9] p-3 shadow-xl items-center gap-3 animate-in fade-in duration-300">
               <div className="flex -space-x-2">
                 <img
-                  src="/src/assets/images/golden_retriever_profile_1792932440339.jpg"
+                  src="/images/golden_retriever_profile_1792932440339.jpg"
                   alt="Bruno"
                   className="w-9 h-9 rounded-full border-2 border-white object-cover"
                   referrerPolicy="no-referrer"
                 />
                 <img
-                  src="/src/assets/images/french_bulldog_profile_1792932441788.jpg"
+                  src="/images/french_bulldog_profile_1792932441788.jpg"
                   alt="Luna"
                   className="w-9 h-9 rounded-full border-2 border-white object-cover"
                   referrerPolicy="no-referrer"
@@ -397,7 +397,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </h2>
 
             <p className="text-white/85 text-base sm:text-lg leading-relaxed">
-              PawMatch is strictly built for companionship, socialization, and ethical kennel welfare. We enforce strict policies to protect our four-legged friends:
+              Woof Pal is strictly built for companionship, socialization, and ethical kennel welfare. We enforce strict policies to protect our four-legged friends:
             </p>
 
             <div className="space-y-3.5 text-sm text-white/90">
@@ -412,14 +412,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <div className="w-5 h-5 rounded-full bg-[#133A2B] flex items-center justify-center shrink-0 mt-0.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-white" />
                 </div>
-                <span><strong>No Commercial Puppy Mill Trade:</strong> PawMatch does NOT facilitate illegal animal broker sales, backyard breeding, or animal exploitation. Accounts promoting inhumane breeding are banned.</span>
+                <span><strong>No Commercial Puppy Mill Trade:</strong> Woof Pal does NOT facilitate illegal animal broker sales, backyard breeding, or animal exploitation. Accounts promoting inhumane breeding are banned.</span>
               </div>
 
               <div className="flex items-start gap-3">
                 <div className="w-5 h-5 rounded-full bg-[#133A2B] flex items-center justify-center shrink-0 mt-0.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-white" />
                 </div>
-                <span><strong>Veterinary Consultation Mandatory:</strong> A mutual match on PawMatch is never medical or genetic clearance for breeding. Always consult a licensed veterinary surgeon before any pairing.</span>
+                <span><strong>Veterinary Consultation Mandatory:</strong> A mutual match on Woof Pal is never medical or genetic clearance for breeding. Always consult a licensed veterinary surgeon before any pairing.</span>
               </div>
             </div>
 
@@ -458,7 +458,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           <div className="lg:col-span-7 space-y-4">
             <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#194B38] bg-[#E8F0E9] px-3.5 py-1 rounded-full">
               <Briefcase className="w-3.5 h-3.5 text-[#194B38]" />
-              <span>PawMatch Pet Services</span>
+              <span>Woof Pal Pet Services</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl font-black text-[#194B38] tracking-tight">
               Need a Vet, Groomer, or Dog Walker in <span className="italic font-normal">Lagos?</span>
@@ -502,7 +502,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <div className="w-7 h-7 rounded-lg bg-[#194B38] text-white flex items-center justify-center font-serif font-black text-sm">
               P
             </div>
-            <span className="font-serif font-bold text-base text-[#194B38]">PawMatch</span>
+            <span className="font-serif font-bold text-base text-[#194B38]">Woof Pal</span>
             <span className="text-[#D1E0D3]">·</span>
             <span className="font-serif italic text-[#536B60]">Better Matches. Happier Paws.</span>
           </div>
@@ -515,7 +515,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
 
           <div>
-            <span>© 2026 PawMatch Platform · Demonstration Prototype</span>
+            <span>© 2026 Woof Pal Platform · Demonstration Prototype</span>
           </div>
         </div>
       </footer>

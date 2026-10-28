@@ -691,7 +691,7 @@ export const PetServicesMarketplace: React.FC<PetServicesMarketplaceProps> = ({
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Building className="w-5 h-5 text-[#194B38]" />
-                <h3 className="font-serif text-xl font-bold text-[#194B38]">Partner with PawMatch</h3>
+                <h3 className="font-serif text-xl font-bold text-[#194B38]">Partner with Woof Pal</h3>
               </div>
               <button onClick={() => setShowBusinessPartnerInfo(false)} className="cursor-pointer text-[#536B60] hover:text-[#24352D]">
                 <X className="w-5 h-5" />
@@ -699,7 +699,7 @@ export const PetServicesMarketplace: React.FC<PetServicesMarketplaceProps> = ({
             </div>
 
             <p className="text-xs text-[#536B60] leading-relaxed">
-              Grow your pet care practice in Lagos. PawMatch connects veterinary surgeries, groomers, boarders, and certified trainers with engaged dog parents.
+              Grow your pet care practice in Lagos. Woof Pal connects veterinary surgeries, groomers, boarders, and certified trainers with engaged dog parents.
             </p>
 
             <div className="space-y-3">
