@@ -48,8 +48,79 @@ export const AddEditDogModal: React.FC<AddEditDogModalProps> = ({
   const [bio, setBio] = useState(initialDog?.bio || '');
   const [area, setArea] = useState(initialDog?.location.area || 'Lekki Phase 1');
   const [photoUrl, setPhotoUrl] = useState(
-    initialDog?.photos[0] || '/images/golden_retriever_profile_1792932440339.jpg'
+    initialDog?.photos[0] || '/src/assets/images/golden_retriever_profile_1792932440339.jpg'
   );
+
+  const [photoUploadError, setPhotoUploadError] = useState('');
+
+  const handlePhotoUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      setPhotoUploadError('Please select an image file.');
+      event.target.value = '';
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      setPhotoUploadError('Image must be smaller than 10 MB.');
+      event.target.value = '';
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const image = new Image();
+
+      image.onload = () => {
+        const maxDimension = 900;
+        const scale = Math.min(
+          1,
+          maxDimension / Math.max(image.width, image.height)
+        );
+
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(image.width * scale);
+        canvas.height = Math.round(image.height * scale);
+
+        const context = canvas.getContext('2d');
+
+        if (!context) {
+          setPhotoUploadError('Unable to process this image.');
+          return;
+        }
+
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+        const compressed = canvas.toDataURL('image/jpeg', 0.72);
+
+        if (compressed.length > 850000) {
+          setPhotoUploadError(
+            'This image is still too large. Please choose a smaller photo.'
+          );
+          return;
+        }
+
+        setPhotoUrl(compressed);
+        setPhotoUploadError('');
+      };
+
+      image.onerror = () => {
+        setPhotoUploadError('Unable to read this image.');
+      };
+
+      image.src = reader.result as string;
+    };
+
+    reader.onerror = () => {
+      setPhotoUploadError('Unable to load this image.');
+    };
+
+    reader.readAsDataURL(file);
+    event.target.value = '';
+  };
 
   // Temperament tags
   const [temperamentList, setTemperamentList] = useState<string[]>(
@@ -81,11 +152,11 @@ export const AddEditDogModal: React.FC<AddEditDogModalProps> = ({
   const [studOrDamTerms, setStudOrDamTerms] = useState(initialDog?.responsibleBreedingInfo?.studOrDamTerms || '');
 
   const photoPresets = [
-    { label: 'Golden Retriever', url: '/images/golden_retriever_profile_1792932440339.jpg' },
-    { label: 'French Bulldog', url: '/images/french_bulldog_profile_1792932441788.jpg' },
-    { label: 'German Shepherd', url: '/images/german_shepherd_profile_1792932441892.jpg' },
-    { label: 'Cavapoo / Poodle', url: '/images/poodle_maltese_profile_1792932441976.jpg' },
-    { label: 'Park Play Buddies', url: '/images/pawmatch_hero_dog_1792932440583.jpg' }
+    { label: 'Golden Retriever', url: '/src/assets/images/golden_retriever_profile_1792932440339.jpg' },
+    { label: 'French Bulldog', url: '/src/assets/images/french_bulldog_profile_1792932441788.jpg' },
+    { label: 'German Shepherd', url: '/src/assets/images/german_shepherd_profile_1792932441892.jpg' },
+    { label: 'Cavapoo / Poodle', url: '/src/assets/images/poodle_maltese_profile_1792932441976.jpg' },
+    { label: 'Park Play Buddies', url: '/src/assets/images/pawmatch_hero_dog_1792932440583.jpg' }
   ];
 
   const handleAddTemperament = () => {
@@ -318,7 +389,37 @@ export const AddEditDogModal: React.FC<AddEditDogModalProps> = ({
                 <img src={photoUrl} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </div>
               <div className="flex-1 space-y-2">
-                <p className="text-xs text-[#6B7280]">Select from high-fidelity photo presets or paste an image URL:</p>
+                <p className="text-xs text-[#6B7280]">Upload a photo from your phone or choose one of the demo presets:</p>
+
+                <label className="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-[#1B4332] text-white text-xs font-semibold cursor-pointer hover:bg-[#245B43]">
+                  Upload from Gallery
+                  <input
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp"
+                    onChange={handlePhotoUpload}
+                    className="hidden"
+                  />
+                </label>
+
+                {photoUrl.startsWith('data:image/') && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setPhotoUrl('/src/assets/images/golden_retriever_profile_1792932440339.jpg');
+                      setPhotoUploadError('');
+                    }}
+                    className="ml-2 text-xs text-red-600 underline"
+                  >
+                    Remove uploaded photo
+                  </button>
+                )}
+
+                {photoUploadError && (
+                  <p role="alert" className="text-xs text-red-600">
+                    {photoUploadError}
+                  </p>
+                )}
+
                 <div className="flex flex-wrap gap-1.5">
                   {photoPresets.map((preset, idx) => (
                     <button

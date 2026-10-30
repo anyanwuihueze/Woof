@@ -1,18 +1,21 @@
-import { 
-  Dog, 
-  OwnerProfile, 
-  Match, 
-  Message, 
-  FilterPreferences, 
-  ServiceProvider, 
+import {
+  Dog,
+  OwnerProfile,
+  Match,
+  Message,
+  FilterPreferences,
+  ServiceProvider,
   ServiceEnquiry,
-  ReportItem 
+  ReportItem,
+  MatingRequest,
+  MatingRequestStatus,
+  BreedingFilters
 } from '../types';
-import { 
-  CURRENT_USER_DEFAULT, 
-  CURRENT_USER_DOGS, 
-  MOCK_DOGS, 
-  MOCK_SERVICE_PROVIDERS 
+import {
+  CURRENT_USER_DEFAULT,
+  CURRENT_USER_DOGS,
+  MOCK_DOGS,
+  MOCK_SERVICE_PROVIDERS
 } from '../data/mockData';
 
 const STORAGE_KEYS = {
@@ -26,6 +29,7 @@ const STORAGE_KEYS = {
   ENQUIRIES: 'pawmatch_enquiries',
   REPORTS: 'pawmatch_reports',
   BLOCKS: 'pawmatch_blocks',
+  MATING_REQUESTS: 'pawmatch_mating_requests',
 };
 
 // Safe LocalStorage helpers
@@ -193,7 +197,7 @@ export const storageService = {
     // In our demonstration dataset, dogs like Luna, Kaiser, Coco, and Penny have already expressed interest in Bruno / active dog.
     // If the user likes one of them (or any demo dog with 80% probability to delight the demonstration reviewer), create a real match record!
     const matches = this.getMatches();
-    const existingMatch = matches.find(m => 
+    const existingMatch = matches.find(m =>
       (m.dog1Id === activeDog.id && m.dog2Id === targetDog.id) ||
       (m.dog1Id === targetDog.id && m.dog2Id === activeDog.id)
     );
@@ -406,6 +410,288 @@ export const storageService = {
     return getItem<string[]>(STORAGE_KEYS.BLOCKS, []);
   },
 
+  // --- MATING REQUESTS & BREEDING WORKFLOW ---
+  getMatingRequests(): MatingRequest[] {
+    const defaultRequests: MatingRequest[] = [
+      {
+        id: 'mreq_incoming_demo_01',
+        fromDogId: 'dog_zara_breed_01',
+        fromDog: {
+          id: 'dog_zara_breed_01',
+          ownerId: 'owner_chinedu_zara',
+          ownerName: 'Chinedu & Amara Kalu',
+          ownerAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+          name: 'Zara',
+          breed: 'Golden Retriever',
+          isMixedBreed: false,
+          ageYears: 2,
+          ageMonths: 8,
+          sex: 'female',
+          size: 'Large',
+          weightKg: 29,
+          temperament: ['Gentle', 'Obedient', 'Calm', 'Affectionate'],
+          energyLevel: 'Moderate',
+          favoriteActivities: ['Scent games', 'Dock diving', 'Obedience practice'],
+          photos: [
+            'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80'
+          ],
+          bio: 'Show-champion lineage Golden Retriever dam with certified hip/elbow scores (OFA Good/Normal) and complete DNA profile. Seeking ethical pairing.',
+          primaryPurpose: 'breeding',
+          location: {
+            city: 'Lagos',
+            area: 'Ikoyi Parkview',
+            approximateDistanceKm: 3.8,
+          },
+          vaccinationStatus: 'verified_by_vet',
+          healthScreening: {
+            rabiesVaccinated: true,
+            dhppVaccinated: true,
+            dewormedRecently: true,
+            spayedOrNeutered: false,
+            microchipped: true,
+            vetName: 'Victoria Island Veterinary Hospital (Verified Partner)',
+            lastCheckupDate: '2026-10-01',
+            notes: 'Pre-breeding reproductive screening complete. Clear brucellosis panel.',
+          },
+          responsibleBreedingInfo: {
+            pedigreeRegistered: true,
+            pedigreeClubName: 'Kennel Club of West Africa',
+            registrationNumber: 'KCWA-GR-2024-1189',
+            dnaScreeningConducted: true,
+            hipElbowScoreAvailable: true,
+            eyeCertificationAvailable: true,
+            vetBreedingClearance: true,
+            breedingExperience: 'First time',
+            ethicalBreedingAgreementAccepted: true,
+            studOrDamTerms: 'Stud fee or second pick of litter. Full health clearance contract required.',
+          },
+          createdAt: '2026-08-01T10:00:00Z',
+          updatedAt: '2026-10-15T10:00:00Z',
+        },
+        fromOwnerId: 'owner_chinedu_zara',
+        fromOwnerName: 'Chinedu & Amara Kalu',
+        fromOwnerAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+        fromOwnerPhone: '+234 802 334 9918',
+        fromOwnerEmail: 'chinedu.kalu@example.com',
+        toDogId: 'dog_bruno_01',
+        toDog: CURRENT_USER_DOGS[0],
+        toOwnerId: 'owner_adaeze_01',
+        toOwnerName: 'Adaeze Okonjo',
+        toOwnerAvatar: CURRENT_USER_DEFAULT.avatarUrl,
+        toOwnerPhone: CURRENT_USER_DEFAULT.phone,
+        toOwnerEmail: CURRENT_USER_DEFAULT.email,
+        status: 'pending',
+        termsProposed: 'Stud fee ₦250,000 or pick of litter upon veterinary confirmation. Health certificates attached.',
+        healthCertAttached: true,
+        pedigreeAttached: true,
+        note: 'Hello Adaeze! We have admired Bruno\'s structure and calm temperament. We would love to discuss a planned ethical breeding pairing under supervision of Victoria Island Vet Hospital.',
+        createdAt: new Date(Date.now() - 3600000 * 4).toISOString(),
+        updatedAt: new Date(Date.now() - 3600000 * 4).toISOString(),
+      },
+      {
+        id: 'mreq_outgoing_demo_02',
+        fromDogId: 'dog_bruno_01',
+        fromDog: CURRENT_USER_DOGS[0],
+        fromOwnerId: 'owner_adaeze_01',
+        fromOwnerName: 'Adaeze Okonjo',
+        fromOwnerAvatar: CURRENT_USER_DEFAULT.avatarUrl,
+        fromOwnerPhone: CURRENT_USER_DEFAULT.phone,
+        fromOwnerEmail: CURRENT_USER_DEFAULT.email,
+        toDogId: 'dog_kaiser_03',
+        toDog: MOCK_DOGS.find(d => d.id === 'dog_kaiser_03') || MOCK_DOGS[1],
+        toOwnerId: 'owner_ibrahim_03',
+        toOwnerName: 'Capt. Ibrahim M.',
+        toOwnerAvatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
+        toOwnerPhone: '+234 805 112 4433',
+        toOwnerEmail: 'ibrahim.kaiser@example.com',
+        status: 'pending',
+        termsProposed: 'Stud contract review with vet oversight at Crown Heights Vet Surgery.',
+        healthCertAttached: true,
+        pedigreeAttached: true,
+        note: 'Inquiry regarding pedigree lineage verification and future ethical stud arrangement.',
+        createdAt: new Date(Date.now() - 3600000 * 24).toISOString(),
+        updatedAt: new Date(Date.now() - 3600000 * 24).toISOString(),
+      }
+    ];
+
+    return getItem<MatingRequest[]>(STORAGE_KEYS.MATING_REQUESTS, defaultRequests);
+  },
+
+  sendMatingRequest(data: {
+    fromDog: Dog;
+    toDog: Dog;
+    termsProposed: string;
+    healthCertAttached: boolean;
+    pedigreeAttached: boolean;
+    note: string;
+  }): MatingRequest {
+    const user = this.getCurrentUser();
+    const newRequest: MatingRequest = {
+      id: `mreq_${Date.now()}`,
+      fromDogId: data.fromDog.id,
+      fromDog: data.fromDog,
+      fromOwnerId: user.id,
+      fromOwnerName: user.displayName,
+      fromOwnerAvatar: user.avatarUrl,
+      fromOwnerPhone: user.phone,
+      fromOwnerEmail: user.email,
+      toDogId: data.toDog.id,
+      toDog: data.toDog,
+      toOwnerId: data.toDog.ownerId,
+      toOwnerName: data.toDog.ownerName,
+      toOwnerAvatar: data.toDog.ownerAvatar,
+      status: 'pending',
+      termsProposed: data.termsProposed,
+      healthCertAttached: data.healthCertAttached,
+      pedigreeAttached: data.pedigreeAttached,
+      note: data.note,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    const current = this.getMatingRequests();
+    const updated = [newRequest, ...current];
+    setItem(STORAGE_KEYS.MATING_REQUESTS, updated);
+    return newRequest;
+  },
+
+  updateMatingRequestStatus(
+    requestId: string,
+    status: MatingRequestStatus,
+    responseNote?: string
+  ): MatingRequest | null {
+    const requests = this.getMatingRequests();
+    let updatedTarget: MatingRequest | null = null;
+
+    const updated = requests.map(req => {
+      if (req.id === requestId) {
+        updatedTarget = {
+          ...req,
+          status,
+          responseNote: responseNote || req.responseNote,
+          updatedAt: new Date().toISOString(),
+        };
+        return updatedTarget;
+      }
+      return req;
+    });
+
+    setItem(STORAGE_KEYS.MATING_REQUESTS, updated);
+    return updatedTarget;
+  },
+
+  cancelMatingRequest(requestId: string): void {
+    this.updateMatingRequestStatus(requestId, 'cancelled');
+  },
+
+  getBreedingCandidates(myDog: Dog, filters: BreedingFilters): Dog[] {
+    const all = this.getAllDogs();
+    const userDogs = this.getUserDogs();
+    const userDogIds = new Set(userDogs.map(d => d.id));
+    const blocked = new Set(this.getBlockedOwners());
+
+    const partnerDog: Dog = {
+      id: 'dog_zara_breed_01',
+      ownerId: 'owner_chinedu_zara',
+      ownerName: 'Chinedu & Amara Kalu',
+      ownerAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+      name: 'Zara',
+      breed: 'Golden Retriever',
+      isMixedBreed: false,
+      ageYears: 2,
+      ageMonths: 8,
+      sex: 'female',
+      size: 'Large',
+      weightKg: 29,
+      temperament: ['Gentle', 'Obedient', 'Calm', 'Affectionate'],
+      energyLevel: 'Moderate',
+      favoriteActivities: ['Scent games', 'Dock diving', 'Obedience practice'],
+      photos: [
+        'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80'
+      ],
+      bio: 'Show-champion lineage Golden Retriever dam with certified hip/elbow scores (OFA Good/Normal) and complete DNA profile. Seeking ethical pairing.',
+      primaryPurpose: 'breeding',
+      location: {
+        city: 'Lagos',
+        area: 'Ikoyi Parkview',
+        approximateDistanceKm: 3.8,
+      },
+      vaccinationStatus: 'verified_by_vet',
+      healthScreening: {
+        rabiesVaccinated: true,
+        dhppVaccinated: true,
+        dewormedRecently: true,
+        spayedOrNeutered: false,
+        microchipped: true,
+        vetName: 'Victoria Island Veterinary Hospital (Verified Partner)',
+        lastCheckupDate: '2026-10-01',
+        notes: 'Pre-breeding reproductive screening complete. Clear brucellosis panel.',
+      },
+      responsibleBreedingInfo: {
+        pedigreeRegistered: true,
+        pedigreeClubName: 'Kennel Club of West Africa',
+        registrationNumber: 'KCWA-GR-2024-1189',
+        dnaScreeningConducted: true,
+        hipElbowScoreAvailable: true,
+        eyeCertificationAvailable: true,
+        vetBreedingClearance: true,
+        breedingExperience: 'First time',
+        ethicalBreedingAgreementAccepted: true,
+        studOrDamTerms: 'Stud fee or second pick of litter. Full health clearance contract required.',
+      },
+      createdAt: '2026-08-01T10:00:00Z',
+      updatedAt: '2026-10-15T10:00:00Z',
+    };
+
+    const combined = [partnerDog, ...all];
+    const uniquePool = Array.from(new Map(combined.map(item => [item.id, item])).values());
+
+    return uniquePool.filter(dog => {
+      if (userDogIds.has(dog.id)) return false;
+      if (blocked.has(dog.ownerId)) return false;
+
+      // Only show dogs explicitly listed for responsible breeding.
+      if (dog.primaryPurpose !== 'breeding') return false;
+
+      // Filter by breed
+      if (filters.breed && filters.breed.trim() !== '') {
+        if (!dog.breed.toLowerCase().includes(filters.breed.toLowerCase().trim())) {
+          return false;
+        }
+      }
+
+      // Filter by biological sex
+      if (filters.sex !== 'all') {
+        if (dog.sex !== filters.sex) return false;
+      }
+
+      // Filter by age
+      if (dog.ageYears < filters.minAge || dog.ageYears > filters.maxAge) {
+        return false;
+      }
+
+      // Filter by pedigree registration
+      if (filters.pedigreeOnly) {
+        if (!dog.responsibleBreedingInfo?.pedigreeRegistered) return false;
+      }
+
+      // Filter by health clearance
+      if (filters.healthClearedOnly) {
+        const hasClearance = dog.responsibleBreedingInfo?.vetBreedingClearance || dog.vaccinationStatus === 'verified_by_vet';
+        if (!hasClearance) return false;
+      }
+
+      // Filter by distance
+      if (filters.maxDistanceKm && dog.location.approximateDistanceKm > filters.maxDistanceKm) {
+        return false;
+      }
+
+      return true;
+    });
+  },
+
   // Reset demo state
   resetAllDemoData(): void {
     localStorage.removeItem(STORAGE_KEYS.USER_PROFILE);
@@ -418,6 +704,7 @@ export const storageService = {
     localStorage.removeItem(STORAGE_KEYS.ENQUIRIES);
     localStorage.removeItem(STORAGE_KEYS.REPORTS);
     localStorage.removeItem(STORAGE_KEYS.BLOCKS);
+    localStorage.removeItem(STORAGE_KEYS.MATING_REQUESTS);
     window.location.reload();
   }
 };

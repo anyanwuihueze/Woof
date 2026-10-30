@@ -39,7 +39,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
   const [dogSex, setDogSex] = useState<DogSex>('male');
 
   // Step 3: Dog Photo
-  const [selectedPhoto, setSelectedPhoto] = useState('/images/golden_retriever_profile_1792932440339.jpg');
+  const [selectedPhoto, setSelectedPhoto] = useState('/src/assets/images/golden_retriever_profile_1792932440339.jpg');
 
   // Step 4: Dog Characteristics
   const [dogSize, setDogSize] = useState<DogSize>('Large');
@@ -55,10 +55,10 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
   const [maxDistance, setMaxDistance] = useState(15);
 
   const samplePhotos = [
-    { label: 'Golden Retriever', url: '/images/golden_retriever_profile_1792932440339.jpg' },
-    { label: 'French Bulldog', url: '/images/french_bulldog_profile_1792932441788.jpg' },
-    { label: 'German Shepherd', url: '/images/german_shepherd_profile_1792932441892.jpg' },
-    { label: 'Cavapoo / Poodle', url: '/images/poodle_maltese_profile_1792932441976.jpg' },
+    { label: 'Golden Retriever', url: '/src/assets/images/golden_retriever_profile_1792932440339.jpg' },
+    { label: 'French Bulldog', url: '/src/assets/images/french_bulldog_profile_1792932441788.jpg' },
+    { label: 'German Shepherd', url: '/src/assets/images/german_shepherd_profile_1792932441892.jpg' },
+    { label: 'Cavapoo / Poodle', url: '/src/assets/images/poodle_maltese_profile_1792932441976.jpg' },
   ];
 
   const handleFinish = () => {
