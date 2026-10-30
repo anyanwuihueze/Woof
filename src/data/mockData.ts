@@ -36,8 +36,8 @@ export const CURRENT_USER_DOGS: Dog[] = [
     energyLevel: 'High',
     favoriteActivities: ['Fetch with tennis balls', 'Swimming at the beach', 'Tug of war', 'Sniffing trails'],
     photos: [
-      '/images/golden_retriever_profile_1792932440339.jpg',
-      '/images/pawmatch_hero_dog_1792932440583.jpg'
+      '/src/assets/images/golden_retriever_profile_1792932440339.jpg',
+      '/src/assets/images/pawmatch_hero_dog_1792932440583.jpg'
     ],
     bio: 'Golden sweetheart with endless tail wags! Loves retrieving balls from the surf and rolling on cool grass. Fully socialized and gentle with small and large dogs.',
     primaryPurpose: 'playdates',
@@ -80,7 +80,7 @@ export const MOCK_DOGS: Dog[] = [
     energyLevel: 'Moderate',
     favoriteActivities: ['Sunbathing on patio', 'Short shady walks', 'Treat puzzle toys'],
     photos: [
-      '/images/french_bulldog_profile_1792932441788.jpg'
+      '/src/assets/images/french_bulldog_profile_1792932441788.jpg'
     ],
     bio: 'Luna is a little clown with big bat ears. She gets playful bursts of zoomies followed by 3-hour naps. Enjoys calm dogs who respect gentle play.',
     primaryPurpose: 'playdates',
@@ -120,7 +120,7 @@ export const MOCK_DOGS: Dog[] = [
     energyLevel: 'Very High',
     favoriteActivities: ['Agility course running', 'Frisbee jumps', 'Long distance trail walking'],
     photos: [
-      '/images/german_shepherd_profile_1792932441892.jpg'
+      '/src/assets/images/german_shepherd_profile_1792932441892.jpg'
     ],
     bio: 'Disciplined and handsome German Shepherd with exemplary recall. Looking for athletic canine running buddies or ethical breed inquiries.',
     primaryPurpose: 'breeding',
@@ -172,7 +172,7 @@ export const MOCK_DOGS: Dog[] = [
     energyLevel: 'Moderate',
     favoriteActivities: ['Lap snuggles', 'Puppy socializing groups', 'Squeaky plushies'],
     photos: [
-      '/images/poodle_maltese_profile_1792932441976.jpg'
+      '/src/assets/images/poodle_maltese_profile_1792932441976.jpg'
     ],
     bio: 'Young fluffball learning the ropes! Loves greeting every dog gently with slow tail wags. Perfect playmate for small breeds and gentle puppies.',
     primaryPurpose: 'socialization',

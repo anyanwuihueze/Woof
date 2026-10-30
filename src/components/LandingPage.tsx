@@ -123,13 +123,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <div className="hidden sm:flex absolute -top-5 -left-6 z-20 bg-white/95 backdrop-blur-md rounded-2xl border border-[#E8F0E9] p-3 shadow-xl items-center gap-3 animate-in fade-in duration-300">
               <div className="flex -space-x-2">
                 <img
-                  src="/images/golden_retriever_profile_1792932440339.jpg"
+                  src="/src/assets/images/golden_retriever_profile_1792932440339.jpg"
                   alt="Bruno"
                   className="w-9 h-9 rounded-full border-2 border-white object-cover"
                   referrerPolicy="no-referrer"
                 />
                 <img
-                  src="/images/french_bulldog_profile_1792932441788.jpg"
+                  src="/src/assets/images/french_bulldog_profile_1792932441788.jpg"
                   alt="Luna"
                   className="w-9 h-9 rounded-full border-2 border-white object-cover"
                   referrerPolicy="no-referrer"
@@ -500,7 +500,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 rounded-lg bg-[#194B38] text-white flex items-center justify-center font-serif font-black text-sm">
-              P
+              W
             </div>
             <span className="font-serif font-bold text-base text-[#194B38]">Woof Pal</span>
             <span className="text-[#D1E0D3]">·</span>

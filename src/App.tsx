@@ -13,22 +13,25 @@ import { OnboardingModal } from './components/OnboardingModal';
 import { AddEditDogModal } from './components/AddEditDogModal';
 import { TrustSafetyModal } from './components/TrustSafetyModal';
 import { ReportBlockModal } from './components/ReportBlockModal';
+import { FindMateView } from './components/FindMateView';
 
-import { 
-  Dog, 
-  OwnerProfile, 
-  Match, 
-  FilterPreferences 
+import {
+  Dog,
+  OwnerProfile,
+  Match,
+  FilterPreferences,
+  MatingRequest
 } from './types';
 import { storageService } from './services/storageService';
 
 export default function App() {
   // Navigation & Core State
-  const [activeTab, setActiveTab] = useState<'landing' | 'discovery' | 'matches' | 'services' | 'profile'>('landing');
+  const [activeTab, setActiveTab] = useState<'landing' | 'discovery' | 'find-mate' | 'matches' | 'services' | 'profile'>('landing');
   const [currentUser, setCurrentUser] = useState<OwnerProfile>(storageService.getCurrentUser());
   const [userDogs, setUserDogs] = useState<Dog[]>(storageService.getUserDogs());
   const [activeDog, setActiveDog] = useState<Dog>(storageService.getActiveDog());
   const [matches, setMatches] = useState<Match[]>(storageService.getMatches());
+  const [matingRequests, setMatingRequests] = useState<MatingRequest[]>(storageService.getMatingRequests());
 
   // Filter State
   const [filterPreferences, setFilterPreferences] = useState<FilterPreferences>({
@@ -49,7 +52,7 @@ export default function App() {
   const [selectedDogDetail, setSelectedDogDetail] = useState<Dog | null>(null);
   const [celebrationMatch, setCelebrationMatch] = useState<Match | null>(null);
   const [activeChatMatch, setActiveChatMatch] = useState<Match | null>(null);
-  
+
   // Add / Edit Dog Modal State
   const [dogModalState, setDogModalState] = useState<{
     isOpen: boolean;
@@ -71,11 +74,13 @@ export default function App() {
     const dogs = storageService.getUserDogs();
     const active = storageService.getActiveDog();
     const currentMatches = storageService.getMatches();
+    const reqs = storageService.getMatingRequests();
 
     setCurrentUser(user);
     setUserDogs(dogs);
     setActiveDog(active);
     setMatches(currentMatches);
+    setMatingRequests(reqs);
   };
 
   useEffect(() => {
@@ -112,14 +117,19 @@ export default function App() {
     setCelebrationMatch(match);
   };
 
+  const pendingMatingCount = matingRequests.filter(
+    r => (r.toDogId === activeDog.id || r.toOwnerId === currentUser.id) && r.status === 'pending'
+  ).length;
+
   return (
-    <div className="min-h-screen bg-[#FAF7F0] text-[#24352D] flex flex-col font-sans pb-16 md:pb-0">
-      
+    <div className="min-h-screen bg-[#FAF7F0] text-[#24352D] flex flex-col font-sans pb-16 md:pb-0 overflow-x-hidden w-full max-w-full">
+
       {/* Global Navigation Bar */}
       <Navigation
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         matchesCount={matches.length}
+        pendingMatingRequestsCount={pendingMatingCount}
         currentUser={currentUser}
         activeDog={activeDog}
         userDogs={userDogs}
@@ -146,6 +156,35 @@ export default function App() {
             onMatchCreated={handleMatchCreated}
             onOpenFilters={() => setIsFiltersOpen(true)}
             filterPreferences={filterPreferences}
+          />
+        )}
+
+        {activeTab === 'find-mate' && (
+          <FindMateView
+            activeDog={activeDog}
+            userDogs={userDogs}
+            onSelectActiveDog={handleSelectActiveDog}
+            onOpenDogDetail={(dog) => setSelectedDogDetail(dog)}
+            onOpenChat={(partnerDog, partnerOwnerName) => {
+              const existingMatch = matches.find(m => m.targetDog.id === partnerDog.id);
+              if (existingMatch) {
+                setActiveChatMatch(existingMatch);
+              } else {
+                const matingMatch: Match = {
+                  id: `mating_conn_${partnerDog.id}`,
+                  dog1Id: activeDog.id,
+                  dog2Id: partnerDog.id,
+                  owner1Id: currentUser.id,
+                  owner2Id: partnerDog.ownerId,
+                  targetDog: partnerDog,
+                  matchedAt: new Date().toISOString(),
+                  status: 'active',
+                  lastMessage: `Mating connection confirmed with ${partnerOwnerName}.`,
+                  lastMessageTime: 'Just now',
+                };
+                setActiveChatMatch(matingMatch);
+              }
+            }}
           />
         )}
 

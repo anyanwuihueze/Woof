@@ -3,10 +3,10 @@ export type DogSize = 'Toy' | 'Small' | 'Medium' | 'Large' | 'Giant';
 export type EnergyLevel = 'Low' | 'Moderate' | 'High' | 'Very High';
 export type DogPurpose = 'playdates' | 'socialization' | 'breeding';
 
-export type VaccinationStatus = 
-  | 'owner_reported_up_to_date' 
-  | 'unvaccinated' 
-  | 'under_vet_review' 
+export type VaccinationStatus =
+  | 'owner_reported_up_to_date'
+  | 'unvaccinated'
+  | 'under_vet_review'
   | 'verified_by_vet';
 
 export interface HealthScreening {
@@ -117,13 +117,13 @@ export interface FilterPreferences {
   breedSearch: string;
 }
 
-export type ServiceCategory = 
-  | 'veterinary' 
-  | 'grooming' 
-  | 'boarding' 
-  | 'training' 
-  | 'walking' 
-  | 'supplies' 
+export type ServiceCategory =
+  | 'veterinary'
+  | 'grooming'
+  | 'boarding'
+  | 'training'
+  | 'walking'
+  | 'supplies'
   | 'other';
 
 export interface ServiceItem {
@@ -185,4 +185,42 @@ export interface ReportItem {
   reason: string;
   details: string;
   createdAt: string;
+}
+
+export type MatingRequestStatus = 'pending' | 'accepted' | 'declined' | 'cancelled';
+
+export interface MatingRequest {
+  id: string;
+  fromDogId: string;
+  fromDog: Dog;
+  fromOwnerId: string;
+  fromOwnerName: string;
+  fromOwnerAvatar?: string;
+  fromOwnerPhone?: string;
+  fromOwnerEmail?: string;
+  toDogId: string;
+  toDog: Dog;
+  toOwnerId: string;
+  toOwnerName: string;
+  toOwnerAvatar?: string;
+  toOwnerPhone?: string;
+  toOwnerEmail?: string;
+  status: MatingRequestStatus;
+  termsProposed: string;
+  healthCertAttached: boolean;
+  pedigreeAttached: boolean;
+  note: string;
+  createdAt: string;
+  updatedAt: string;
+  responseNote?: string;
+}
+
+export interface BreedingFilters {
+  breed: string;
+  sex: 'all' | DogSex;
+  minAge: number;
+  maxAge: number;
+  pedigreeOnly: boolean;
+  healthClearedOnly: boolean;
+  maxDistanceKm: number;
 }

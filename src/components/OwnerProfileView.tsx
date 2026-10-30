@@ -337,8 +337,8 @@ export const OwnerProfileView: React.FC<OwnerProfileViewProps> = ({
             <p className="text-xs text-[#536B60]">Download your complete codebase or push it to your GitHub repository.</p>
           </div>
           <a
-            href="/pawmatch-project.zip"
-            download="pawmatch-project.zip"
+            href="/wolfpal-project.zip"
+            download="wolfpal-project.zip"
             className="px-4 py-2.5 rounded-xl bg-[#194B38] text-white text-xs font-semibold hover:bg-[#133A2B] transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer shrink-0"
           >
             <Download className="w-4 h-4" />
