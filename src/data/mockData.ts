@@ -342,7 +342,7 @@ export const MOCK_DOGS: Dog[] = [
     energyLevel: 'High',
     favoriteActivities: ['Dock jumping', 'Swimming', 'Retrieving rubber balls'],
     photos: [
-      'https://images.unsplash.com/photo-1591769225440-811ad7d6eab2?auto=format&fit=crop&w=800&q=80'
+      'https://images.unsplash.com/photo-1562317305-58a17fe2c09e?auto=format&fit=crop&w=800&q=80'
     ],
     bio: 'Chocolate lab with boundless joy! She has never met a stranger dog or human she didn’t love. Looking for weekly play buddies to burn off energy.',
     primaryPurpose: 'playdates',
